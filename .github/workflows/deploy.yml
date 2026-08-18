@@ -1,0 +1,20 @@
+name: Docker CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t github-image:v1 .
+
+      - name: Show Docker images
+        run: docker images
