@@ -18,7 +18,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: YOUR_AWS_REGION
+          aws-region: ap-south-1
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -30,8 +30,8 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          docker tag github-image:v1 ${{ steps.login-ecr.outputs.registry }}/YOUR_ECR_REPOSITORY:v1
+          docker tag github-image:v1 ${{ steps.login-ecr.outputs.registry }}/docker-mastery:v1
 
       - name: Push Docker image to ECR
         run: |
-          docker push ${{ steps.login-ecr.outputs.registry }}/YOUR_ECR_REPOSITORY:v1
+          docker push ${{ steps.login-ecr.outputs.registry }}/docker-mastery:v1
